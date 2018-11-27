@@ -30,6 +30,32 @@ module.exports = fastify => fastify.route({
   method: 'POST',
   url: '/',
   handler,
+  schema: {
+    tags: ['Opportunity'],
+    description: 'Create a opportunity from system',
+    summary: 'Create opportunity',
+    body: {
+      type: "object",
+      properties: {
+        title: { type: "string" },
+        description:  { type: "string" },
+        duration:  { type: "string" },
+        "_id": { type: "string" }
+      }
+    },
+    response: {
+      200: {
+        description: 'Successful response',
+        type: "object",
+        properties: {
+          title: { type: "string" },
+          description:  { type: "string" },
+          duration:  { type: "string" },
+          "_id": { type: "string" },
+        }
+      }
+    }
+  },
   config: {
     db: fastify.mongo.db,
   },
