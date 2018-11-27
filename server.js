@@ -50,45 +50,42 @@ const start = async () => {
 };
 
 // I need to clean this up.
-if (process.env.NODE_ENV === 'test') {
-  module.exports = fastify;
+
+if (require.main === module) {
+  start();
 } else {
-  if (require.main === module) {
-    start();
-  } else {
-    exports.handler = (event, context, callback) => {
+  exports.handler = (event, context, callback) => {
 
-      context.callbackWaitsForEmptyEventLoop = false;
+    context.callbackWaitsForEmptyEventLoop = false;
 
-      //construct the query string...blah
-      let query = '';
-      const queryString = event.queryStringParameters;
-      if (queryString) {
-        Object.keys(queryString).forEach((key) => {
-          query += key+'='+queryString[key]+'&';
-        });
-        query = '?'+query;
-      }
+    //construct the query string...blah
+    let query = '';
+    const queryString = event.queryStringParameters;
+    if (queryString) {
+      Object.keys(queryString).forEach((key) => {
+        query += key+'='+queryString[key]+'&';
+      });
+      query = '?'+query;
+    }
 
-      // map lambda event
-      const options = {
-        method: event.httpMethod,
-        url: event.path,
-        payload: event.body,
-        headers: event.headers,
-        validate: false
+    // map lambda event
+    const options = {
+      method: event.httpMethod,
+      url: event.path,
+      payload: event.body,
+      headers: event.headers,
+      validate: false
+    };
+
+    fastify.inject(options, function(err, res) {
+      const response = {
+        statusCode: res.statusCode,
+        body: res.payload,
+        headers: res.headers
       };
 
-      fastify.inject(options, function(err, res) {
-        const response = {
-          statusCode: res.statusCode,
-          body: res.payload,
-          headers: res.headers
-        };
+      callback(null, response);
+    });
 
-        callback(null, response);
-      });
-
-    };
-  }
+  };
 }

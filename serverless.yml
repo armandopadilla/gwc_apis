@@ -1,4 +1,4 @@
-service: "gwc_api"
+service: "gwc-api"
 provider:
   name: aws
   runtime: nodejs8.10
@@ -30,4 +30,4 @@ functions:
       MONGO_CONN_STRING: ''
 
 tags:
-  project:gwc_apis
+  project:gwc-apis
