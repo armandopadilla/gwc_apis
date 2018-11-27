@@ -54,7 +54,7 @@ const start = async () => {
 if (require.main === module) {
   start();
 } else {
-  exports.handler = (event, context, callback) => {
+  module.exports.handler = (event, context, callback) => {
 
     context.callbackWaitsForEmptyEventLoop = false;
 

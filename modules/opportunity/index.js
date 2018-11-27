@@ -5,6 +5,9 @@ const getOpportunity = require('./routes/getOpportunity');
 const postCreateOportunity = require('./routes/postCreateOpportunity');
 const patchUpdateOpportunity = require('./routes/patchUpdateOpportinity');
 
+// Join
+const postJoin = require('./routes/postJoin');
+
 module.exports = (fastify, opts, next) => {
 
   // GET - /opportunity/list
@@ -18,6 +21,9 @@ module.exports = (fastify, opts, next) => {
 
   // PATCH - /opportunity
   patchUpdateOpportunity(fastify);
+
+  // POST - /:opportunityId/join
+  postJoin(fastify);
 
   next();
 }
