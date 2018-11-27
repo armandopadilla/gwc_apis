@@ -37,6 +37,35 @@ module.exports = fastify => fastify.route({
   method: 'PATCH',
   url: '/:opportunityId',
   handler,
+  schema: {
+    tags: ['Opportunity'],
+    description: 'Update a specific opportunity from system',
+    summary: 'Update opportunity',
+    params: {
+      opportunityId: { type: "string" }
+    },
+    body: {
+      type: "object",
+      properties: {
+        title: { type: "string" },
+        description:  { type: "string" },
+        duration:  { type: "string" },
+        "_id": { type: "string" }
+      }
+    },
+    response: {
+      200: {
+        description: 'Successful response',
+        type: "object",
+        properties: {
+          title: { type: "string" },
+          description:  { type: "string" },
+          duration:  { type: "string" },
+          "_id": { type: "string" },
+        }
+      }
+    }
+  },
   config: {
     db: fastify.mongo.db,
   },

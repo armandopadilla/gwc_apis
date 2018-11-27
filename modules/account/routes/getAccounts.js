@@ -19,6 +19,26 @@ module.exports = fastify => fastify.route({
   method: 'GET',
   url: '/list',
   handler,
+  schema: {
+    tags: ['Account'],
+    description: 'Get a list of accounts from system',
+    summary: 'Get accounts',
+    response: {
+      200: {
+        description: 'Successful response',
+        type: 'array',
+        items: {
+          type: "object",
+          properties: {
+            "firstname": { type: "string" },
+            "lastname": { type: "string" },
+            "duration": { type: "number" },
+            "_id": { type: "string" },
+          }
+        }
+      }
+    }
+  },
   config: {
     db: fastify.mongo.db,
   },

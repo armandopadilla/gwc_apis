@@ -33,6 +33,9 @@ module.exports = fastify => fastify.route({
   url: '/',
   handler,
   schema: {
+    tags: ['Account'],
+    description: 'Create a new account in the system',
+    summary: 'Create account',
     body: {
       type : "object",
       properties: {
@@ -43,6 +46,18 @@ module.exports = fastify => fastify.route({
         company: { type: "string" }
       },
       required: [ "firstname", "lastname", "email", "cellphone"]
+    },
+    response: {
+      200: {
+        description: 'Successful response',
+        type: 'object',
+        properties: {
+          "firstname": { type: "string" },
+          "lastname": { type: "string" },
+          "duration": { type: "number" },
+          "_id": { type: "string" },
+        }
+      }
     }
   },
   config: {

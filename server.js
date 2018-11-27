@@ -8,6 +8,32 @@ fastify.register(require('fastify-boom'));
 fastify.register(require('fastify-mongodb'), config.db.connInfo);
 
 
+fastify.register(require('fastify-swagger'), {
+  routePrefix: '/docs',
+  exposeRoute: true,
+  swagger: {
+    info: {
+      title: 'Girls Who Code API',
+      description: 'gwc API collection',
+      version: '0.1.0'
+    },
+    host: 'localhost',
+    schemes: ['http'],
+    consumes: ['application/json'],
+    produces: ['application/json'],
+    tags: [
+      { name: 'Account', description: 'Account related end-points' },
+      { name: 'Opportunity', description: 'Opportunity endpoints' },
+    ],
+    securityDefinitions: {
+      apiKey: {
+        type: 'apiKey',
+        name: 'apiKey',
+        in: 'header'
+      }
+    }
+  }
+});
 
 // Register all endpoints
 fastify.register(require('./modules/account'), { prefix: '/account' });

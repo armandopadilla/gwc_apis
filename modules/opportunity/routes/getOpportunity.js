@@ -22,6 +22,23 @@ module.exports = fastify => fastify.route({
   method: 'GET',
   url: '/:opportunityId',
   handler,
+  schema: {
+    tags: ['Opportunity'],
+    description: 'Get a specific opportunity from system',
+    summary: 'Get opportunity',
+    response: {
+      200: {
+        description: 'Successful response',
+        type: "object",
+        properties: {
+          title: { type: "string" },
+          description:  { type: "string" },
+          duration:  { type: "string" },
+          "_id": { type: "string" },
+        }
+      }
+    }
+  },
   config: {
     db: fastify.mongo.db,
   },
