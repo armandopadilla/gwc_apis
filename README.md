@@ -4,6 +4,11 @@ GWC API for the AWS Hackathon.
 # Docs
 [API Documentation](http://gws-api-docs.s3-website-us-east-1.amazonaws.com/)
 
+# Tech
+1. NodeJS - Fastify
+2. MongoDB
+3. Serverless (serverless)
+
 # Deployment
 ## Local
 `docker-compose up`
