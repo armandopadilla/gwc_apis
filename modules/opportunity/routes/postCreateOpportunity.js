@@ -18,7 +18,8 @@ const handler = async (req, res) => {
   const oppObj = {
     title,
     description,
-    duration
+    duration,
+    participants: [] //default little homie!
   };
   const opportunity = await db.collection(collection.OPP_NAME).insertOne(oppObj);
 
