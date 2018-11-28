@@ -2,7 +2,7 @@
 GWC API for the AWS Hackathon.
 
 # Docs
-[asdfasdfasdf](http://gws-api-docs.s3-website-us-east-1.amazonaws.com/)
+[API Documentation](http://gws-api-docs.s3-website-us-east-1.amazonaws.com/)
 
 # Deployment
 ## Local
