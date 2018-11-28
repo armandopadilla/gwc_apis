@@ -32,7 +32,7 @@ const handler = async (req, res) => {
     materialCommitment,
     label,
     description,
-    steps: steps || [],
+    steps,
     endGoal,
     impact: {
       girlsHelped: 0
@@ -41,8 +41,6 @@ const handler = async (req, res) => {
     createdDateTime: new Date(),
     updatedDateTime: new Date()
   };
-
-console.log(oppObj);
   const opportunity = await db.collection(collection.OPP_NAME).insertOne(oppObj);
 
   return res.send(opportunity.ops[0]);
@@ -69,18 +67,9 @@ module.exports = fastify => fastify.route({
         label: { type: "string" },
         description: { type: "string" },
         steps: {
-          type: "array",
-          items: {
-            type: "object",
-            properties: {
-              label: { type: "string"},
-              description: { type: "string"},
-              required: { type: "string" },
-              status: { type: "string" }
-            }
-          }
+          type: "array"
         },
-        endGoal: { type: "array", items: [{ type: "string"}] },
+        endGoal: { type: "array", items: "string" },
         impact: {
           type: "object",
           properties: {
@@ -90,19 +79,7 @@ module.exports = fastify => fastify.route({
         participants: { type: "string" },
         createdDateTime: { type: "string", format: "date-time" },
         updatedDateTime:  { type: "string", format: "date-time" }
-      },
-      required: [
-        "label",
-        "description",
-        "steps",
-        "endGoal",
-        "type",
-        "club",
-        "location",
-        "status",
-        "timeCommitment",
-        "materialCommitment"
-      ]
+      }
     },
     response: {
       200: {

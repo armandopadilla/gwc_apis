@@ -33,10 +33,37 @@ module.exports = fastify => fastify.route({
         items: {
           type: "object",
           properties: {
-            title: { type: "string" },
-            description:  { type: "string" },
-            duration:  { type: "string" },
-            "_id": { type: "string" },
+            type: { type: "string" },
+            club: { type: "string" },
+            location: { type: "string" },
+            status: { type: "string", enum: [ "open", "closed" ] },
+            timeCommitment: { type: "string" },
+            materialCommitment: { type: "string" },
+            label: { type: "string" },
+            description: { type: "string" },
+            participants: { type: "string" },
+            createdDateTime: { type: "string", format: "date-time" },
+            updatedDateTime:  { type: "string", format: "date-time" },
+            _id: { type: "string" },
+            steps: {
+              type: "array",
+              items: {
+                type: "object",
+                properties: {
+                  label: { type: "string"},
+                  description: { type: "string"},
+                  required: { type: "string" },
+                  status: { type: "string" }
+                }
+              }
+            },
+            //endGoal: { type: "array", items: [{ type: "string"}] },
+            impact: {
+              type: "object",
+              properties: {
+                girlsHelped: { type: "number" }
+              }
+            },
           }
         }
       }
