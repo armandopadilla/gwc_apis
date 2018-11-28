@@ -2,7 +2,7 @@ module.exports = {
   db: {
     connInfo: {
       forceClose: true,
-      url: 'mongodb://localhost:27017/gwc-api',
+      url: 'mongodb://admin:reinvent-gwc1@dbh84.mlab.com:27847/gwc_api',
       useNewUrlParser: true,
     },
     OPP_NAME: 'opportunities',
