@@ -12,8 +12,6 @@ const handler = async (req, res) => {
     .find({})
     .toArray();
 
-  const total = opportunities.length;
-
   return res.send(opportunities);
 };
 
